@@ -15,15 +15,15 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <!-- bootstrap css -->
-      <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="{{asset('Assets')}}/css/bootstrap.min.css">
       <!-- style css -->
-      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <link rel="stylesheet" type="text/css" href="{{asset('Assets')}}/css/style.css">
       <!-- Responsive-->
-      <link rel="stylesheet" href="css/responsive.css">
+      <link rel="stylesheet" href="{{asset('Assets')}}/css/responsive.css">
       <!-- fevicon -->
       <link rel="icon" href="images/fevicon.png" type="image/gif" />
       <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+      <link rel="stylesheet" href="{{asset('Assets')}}/css/jquery.mCustomScrollbar.min.css">
       <!-- Tweaks for older IEs-->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <!-- fonts -->
@@ -33,22 +33,21 @@
       <!--  -->
       <!-- owl stylesheets -->
       <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
-      <link rel="stylesheet" href="css/owl.carousel.min.css">
-      <link rel="stylesoeet" href="css/owl.theme.default.min.css">
+      <link rel="stylesheet" href="{{asset('Assets')}}/css/owl.carousel.min.css">
+      <link rel="stylesoeet" href="{{asset('Assets')}}/css/owl.theme.default.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
       @yield("head")
     </head>
    <body>
 <h1>header</h1>
     <body>
-        @section('sidebar')
-            This is the master sidebar.
-        @show
+    @include("home.header")
+    @section('sidebar')
+        @include("home.sidebar")        
+    @show
  
-        <div class="container">
-            @yield('content')
-        </div>
-    <h1>footer</h1>
+    @yield('content')
+    @include("home.footer")
     @yield('foot')
     </body>
 </html>

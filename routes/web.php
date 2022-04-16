@@ -1,6 +1,13 @@
 <?php
-
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminPanel\HomeController as AdminHomeController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AdminHomeController as AdminHouseController;
+use App\Http\Controllers\ImageController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -12,10 +19,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/hello',function(){
+    return 'Hello World';
+});
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
+// Route::get( '/',action:\App\Http\Controllers\HomeController::class,'index')->name('home');
+Route::get('/',[App\Http\Controllers\HomeController::class,'index'])->name('home');
+Route::get('/test',[HomeController::class,'test'])->name('test');
+Route::get('/param/{id}/{number}',[App\Http\Controllers\HomeController::class,'param'])->name('param');
+Route::post('/save',[HomeController::class,'save'])->name('save');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
