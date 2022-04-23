@@ -39,13 +39,8 @@
       @yield("head")
     </head>
    <body>
-<h1>header</h1>
-    <body>
     @include("home.header")
-    @section('sidebar')
-        @include("home.sidebar")        
-    @show
- 
+
     @yield('content')
     @include("home.footer")
     @yield('foot')
