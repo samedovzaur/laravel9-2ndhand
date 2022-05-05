@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\AdminPanel\ProductController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -38,12 +40,32 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-//**************Admin Panel Routes***************************
-Route::get('/admin',[Admin::class,'index'])->name('admin');
 
-//****************Admin Category ROUTES********************
-Route::get('/admin/category',[AdminCategoryController::class,'index'])->name('admin_category');
-Route::get('/admin/category/create',[AdminCategoryController::class,'create'])->name('admin_category_create');
-Route::post('/admin/category/store',[AdminCategoryController::class,'store'])->name('admin_category_store');
-Route::get('/admin/category/edit/{id}',[AdminCategoryController::class,'edit'])->name('admin_category_edit');
-Route::post('/admin/category/update/{id}',[AdminCategoryController::class,'update'])->name('admin_category_update');
+Route::prefix('admin')->name('admin.')->group(function() {
+    // ******************** ADMIN PANEL ROUTES ********************
+    Route::get('/', [AdminPanelHomeController::class, 'index'])->name('index');
+
+    // ******************** ADMIN CATEGORY ROUTES ********************
+    Route::prefix('/category')->name('category.')->controller(AdminCategoryController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/index2', 'index2')->name('index2');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::post('/update/{id}', 'update')->name('update');
+        Route::get('/destroy/{id}', 'destroy')->name('destroy');
+        Route::get('/show/{id}', 'show')->name('show');
+    });
+});
+
+
+// ************ ADMIN PRODUCT ROUTES
+Route::prefix('product')->name('product.')->controller(ProductController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::post('/update/{id}','update')->name('update');
+    Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/delete/{id}', 'destroy')->name('delete');
+});
