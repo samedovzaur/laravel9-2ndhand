@@ -69,3 +69,11 @@ Route::prefix('product')->name('product.')->controller(ProductController::class)
     Route::get('/show/{id}', 'show')->name('show');
     Route::get('/delete/{id}', 'destroy')->name('delete');
 });
+
+// ************ ADMIN PRODUCT IMAGE GALLERY ROUTES
+Route::prefix('image')->name('image.')->controller(ImageController::class)->group(function () {
+    Route::get('/{pid}', 'index')->name('index');
+    Route::post('/store/{pid}e', 'store')->name('store');
+    Route::get('/delete/{pid}/{id}', 'destroy')->name('delete');
+});
+

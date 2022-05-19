@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 class Homecontroller extends Controller
 {
     public function index(){
-        return view("admin.index");
+        $sliderdata=Product::limit(4);
+
+        return view("admin.index",[
+            'sliderdata'=>$sliderdata
+        ]);
     }
 }

@@ -42,6 +42,7 @@
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Title</th>
                                     <th scope="col">image</th>
+                                    <th scope="col">image Gallery</th>
                                     <th scope="col">Status</th>
                                     <th style="text-align: center;">Edit</th>
                                     <th style="text-align: center;">Delete</th>
@@ -54,13 +55,18 @@
                                     <tr>
                                         <th scope="row">{{$rs->id}}</th>
                                         <td>{{$rs->id}}</td>
-                                        <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($data->category, $data->category->title)}}</td>
+                                        <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs->category, $rs->category->title)}}</td>
                                         <td>{{$rs->title}}</td>
                                         <td>
                                             @if($rs->image)
                                                 <img src="{{Storage::url($rs->image)}}" style="height: 40px">
                                             @endif
                                         </td>
+                                        <td><a href="{{route('admin.image.edit', ['id'=>$rs->id])}}"
+                                            onclick="return !window.open(this.href,'','top=50 left=100 width=100,height=700')">
+                                            <img src="{{asset('Assets')}}/admin/assets/images/gallery.png" alt="" style="height: 40px" ></td>
+                                    </a>
+                                    </tr>
                                         <td>{{$rs->status}}</td>
                                         <td>{{$rs->price}}</td>
                                         <td>{{$rs->quantity}}</td>
